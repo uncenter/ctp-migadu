@@ -51,60 +51,177 @@
 		@accent-color: @catppuccin[@@lookup][@@accent];
 
 		#rl-app {
-			background: @base;
-		}
-
-		--border-color: @surface0;
-		#V-MailMessageList.focused .messageList {
-			border-color: var(--border-color) !important;
+			background: @crust;
 		}
 
 		--main-color: @text;
-		--main-bg-color: #48525c;
-		--loading-color: #ddd;
-		--loading-text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
-		--login-color: #eee;
-		--login-bg-color: rgba(0, 0, 0, 0.5);
-		--login-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-		--login-border: none;
-		--login-border-radius: 7px;
-		--dropdown-menu-color: #333;
-		--dropdown-menu-bg-color: #fff;
-		--dropdown-menu-hover-bg-color: #48525c;
-		--dropdown-menu-hover-color: #eee;
-		--dropdown-menu-disable-color: #999;
-		--folders-color: #fff;
-		--folders-disabled-color: #aaa;
-		--folders-selected-color: #fff;
-		--folders-selected-bg-color: rgba(0, 0, 0, 0.5);
-		--folders-focused-color: #fff;
-		--folders-focused-bg-color: rgba(0, 0, 0, 0.7);
-		--folders-hover-color: #fff;
-		--folders-hover-bg-color: rgba(0, 0, 0, 0.5);
-		--folders-drop-color: #fff;
-		--folders-drop-bg-color: rgba(0, 0, 0, 0.5);
-		--settings-menu-color: #fff;
-		--settings-menu-selected-color: #fff;
-		--settings-menu-selected-bg-color: rgba(0, 0, 0, 0.5);
-		--settings-menu-hover-color: #fff;
-		--settings-menu-hover-bg-color: rgba(0, 0, 0, 0.5);
+		--border-color: @surface0;
+		--dropdown-menu-color: @text;
+		--dropdown-menu-bg-color: @surface0;
+		--dropdown-menu-hover-bg-color: @surface1;
+		--dropdown-menu-hover-color: @text;
+		--dropdown-menu-disable-color: @overlay0;
+		--folders-color: @text;
+		--folders-disabled-color: @surface2;
+		--folders-selected-color: @text;
+		--folders-selected-bg-color: @base;
+		--folders-focused-color: @text;
+		--folders-hover-color: @text;
+		--folders-hover-bg-color: @base;
+		--folders-drop-color: @text;
+		--settings-menu-color: @text;
+		--settings-menu-selected-color: @text;
+		--settings-menu-selected-bg-color: @base;
+		--settings-menu-hover-color: @text;
+		--settings-menu-hover-bg-color: @base;
 		--message-list-toolbar-bg-color: @overlay0;
+		--panel-bg-clr: @base;
+		--message-header-bg-clr: @mantle;
+		--hr-color: @surface0;
+		--dialog-bg-clr: @base;
+		--dialog-clr: @text;
+		--tr-hover-bg-clr: @crust;
 
 		.messageView,
 		.messageList {
 			background-color: @base;
 		}
+
+		.messageListItem.selected {
+			border-left-color: @blue;
+			background-color: fade(@blue, 30%);
+		}
+		.messageListItem.focused {
+			border-left-color: @surface0;
+		}
+
 		.thm-message-list-top-toolbar,
 		.thm-message-list-bottom-toolbar {
 			background-image: linear-gradient(to bottom, @mantle, @crust) !important;
 		}
 
-		.messageListItem.selected {
-			border-left-color: @blue;
+		#V-MailMessageList.focused .messageList {
+			border-color: var(--border-color) !important;
 		}
+
+		/* Buttons */
 
 		--btn-bg-clr: @surface0;
 		--btn-clr: @text;
+		--btn-danger-bg-clr: @red;
+		--btn-success-bg-clr: darken(@green, 10%);
+
+		& when not (@lookup = latte) {
+			--btn-success-bg-clr: darken(@green, 15%);
+		}
+
+		.btn {
+			text-shadow: none;
+		}
+
+		/* Icons */
+
+		.b-folders .is-flagged .flag-icon::after {
+			color: @peach;
+		}
+
+		.icon-spinner {
+			border-color: @surface2;
+			border-top-color: @text;
+		}
+		.icon-spinner:not(.not-animated),
+		.list-loading .icon-spinner.not-animated {
+			border-color: transparent;
+			border-top-color: @overlay0;
+		}
+
+		.iconcolor-green {
+			color: @green;
+		}
+
+		/* Loading */
+
+		.messageList .b-content .listDragOver,
+		.messageList .b-content .listEmptyMessage,
+		.messageList .b-content .listError,
+		.messageList .b-content .listLoading,
+		.messageView .b-message-view-desc {
+			color: @overlay0;
+		}
+
+		#messageItem .loading {
+			color: @overlay2;
+		}
+
+		/* Inputs */
+
+		--input-bg-clr: @base;
+		--input-border-clr: @surface0;
+		--input-focus-border-clr: @overlay0;
+		--input-clr: @subtext1;
+
+		input::placeholder {
+			color: @overlay2;
+		}
+
+		@keyframes checkmark-to-box {
+			0% {
+				top: -1px;
+				left: 5px;
+				width: 10px;
+				height: 18px;
+				border: 2px solid darken(@green, 10%);
+				border-width: 0 2px 2px 0;
+				transform: rotate(45deg);
+			}
+
+			50% {
+				top: 13px;
+				left: 5px;
+				width: 4px;
+				height: 4px;
+				transform: rotate(45deg);
+			}
+
+			100% {
+				top: 0;
+				left: 0;
+				width: 18px;
+				height: 18px;
+				border: 2px solid @overlay0;
+				transform: rotate(0);
+			}
+		}
+
+		/* Message body */
+		--link-color: @blue;
+		#messageItem .b-text-part a:visited {
+			color: @mauve;
+		}
+
+		.mail-body {
+			&,
+			& > table,
+			& > table td[style*="background-color: rgb(255, 255, 255);"] {
+				background-color: @base !important;
+				color: @text !important;
+			}
+		}
+
+		/* Draggable items */
+
+		.drag-handle {
+			color: @surface0;
+		}
+
+		tr:hover .drag-handle {
+			color: @surface2;
+		}
+
+		/* Message details */
+		.messageView .messageItemHeader .informationFull td:first-child {
+			border-right-color: @overlay0;
+		}
 	}
 
 	@media (prefers-color-scheme: light) {
