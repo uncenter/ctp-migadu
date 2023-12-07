@@ -50,9 +50,17 @@
 		@crust: @catppuccin[@@lookup][@crust];
 		@accent-color: @catppuccin[@@lookup][@@accent];
 
+		#rl-app {
+			background: @base;
+		}
+
+		--border-color: @surface0;
+		#V-MailMessageList.focused .messageList {
+			border-color: var(--border-color) !important;
+		}
+
 		--main-color: @text;
 		--main-bg-color: #48525c;
-		--main-bg-image: url("/snappymail/v/2.29.1/themes/Default/images/background.jpg");
 		--loading-color: #ddd;
 		--loading-text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
 		--login-color: #eee;
@@ -89,6 +97,10 @@
 		.thm-message-list-top-toolbar,
 		.thm-message-list-bottom-toolbar {
 			background-image: linear-gradient(to bottom, @mantle, @crust) !important;
+		}
+
+		.messageListItem.selected {
+			border-left-color: @blue;
 		}
 
 		--btn-bg-clr: @surface0;
