@@ -377,6 +377,10 @@
 		.msgflag-\$label1:not(.focused) {
 			color: @red;
 		}
+
+		.messageList .b-content .listSearchDesc {
+			border-bottom-color: @surface0;
+		}
 	}
 
 	@media (prefers-color-scheme: light) {
