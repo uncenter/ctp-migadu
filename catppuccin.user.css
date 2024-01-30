@@ -235,7 +235,7 @@
 
 		/* No message selected */
 		.messageView .b-message-view-desc {
-			color: @subtext1;
+			color: @overlay0;
 		}
 
 		/* Loading messages */
