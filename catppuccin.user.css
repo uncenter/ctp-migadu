@@ -50,22 +50,45 @@
 		@crust: @catppuccin[@@lookup][@crust];
 		@accent-color: @catppuccin[@@lookup][@@accent];
 
+		@orange: mix(@peach, @yellow);
+
 		#rl-app {
-			background: @crust;
+			background: @base;
+		}
+
+		.btn {
+			border-color: @surface0 !important;
+			text-shadow: none !important;
+			background-color: @base;
+		}
+
+		.btn.btn-success,
+		.btn.btn-success [class*=" icon-"],
+		.btn.btn-success [class^="icon-"] {
+			color: @green;
+		}
+
+		.btn.disabled.fontastic,
+		.btn.disabled .fontastic {
+			color: @surface0;
 		}
 
 		--main-color: @text;
 		--border-color: @surface0;
 		--dropdown-menu-color: @text;
-		--dropdown-menu-bg-color: @surface0;
+		--dropdown-menu-bg-color: @base;
 		--dropdown-menu-hover-bg-color: @surface1;
 		--dropdown-menu-hover-color: @text;
 		--dropdown-menu-disable-color: @overlay0;
+		--dropdown-menu-border-clr: @surface0;
 		--folders-color: @text;
 		--folders-disabled-color: @surface2;
-		--folders-selected-color: @text;
-		--folders-selected-bg-color: @base;
-		--folders-focused-color: @text;
+		--folders-selected-color: @blue;
+		--folders-selected-bg-color: desaturate(
+			lighten(fade(@blue, 20%), 10%),
+			10%
+		);
+		--folders-focused-color: @blue;
 		--folders-hover-color: @text;
 		--folders-hover-bg-color: @base;
 		--folders-drop-color: @text;
@@ -77,80 +100,47 @@
 		--message-list-toolbar-bg-color: @overlay0;
 		--panel-bg-clr: @base;
 		--message-header-bg-clr: @mantle;
+
 		--hr-color: @surface0;
 		--dialog-bg-clr: @base;
 		--dialog-clr: @text;
 		--tr-hover-bg-clr: @crust;
+		--btn-border-clr: @overlay0;
 
-		.messageView,
-		.messageList {
-			background-color: @base;
+		--loading-color: @text;
+		--login-color: @surface0;
+		--login-bg-color: @overlay2;
+		.LoginView .btn,
+		.LoginView input {
+			border-color: @surface0;
+		}
+		.LoginView input::placeholder {
+			color: var(--login-color);
 		}
 
-		.messageListItem.selected {
-			border-left-color: @blue;
-			background-color: fade(@blue, 30%);
-		}
-		.messageListItem.focused {
-			border-left-color: @surface0;
-		}
-
+		.messageItemHeader,
+		.bodySubHeader,
 		.thm-message-list-top-toolbar,
 		.thm-message-list-bottom-toolbar {
-			background-image: linear-gradient(to bottom, @mantle, @crust) !important;
-		}
-
-		#V-MailMessageList.focused .messageList {
-			border-color: var(--border-color) !important;
+			background: @mantle !important;
 		}
 
 		/* Buttons */
 
-		--btn-bg-clr: @surface0;
 		--btn-clr: @text;
-		--btn-danger-bg-clr: @red;
-		--btn-success-bg-clr: darken(@green, 10%);
-
-		& when not (@lookup = latte) {
-			--btn-success-bg-clr: darken(@green, 15%);
+		.btn.disabled {
+			color: @surface0;
+		}
+		.btn.btn-success:hover,
+		.btn.btn-success:active {
+			background-color: desaturate(lighten(fade(@green, 40%), 10%), 10%);
 		}
 
-		.btn {
-			text-shadow: none;
-		}
+		/* Links */
 
-		/* Icons */
-
-		.b-folders .is-flagged .flag-icon::after {
-			color: @peach;
-		}
-
-		.icon-spinner {
-			border-color: @surface2;
-			border-top-color: @text;
-		}
-		.icon-spinner:not(.not-animated),
-		.list-loading .icon-spinner.not-animated {
-			border-color: transparent;
-			border-top-color: @overlay0;
-		}
-
-		.iconcolor-green {
-			color: @green;
-		}
-
-		/* Loading */
-
-		.messageList .b-content .listDragOver,
-		.messageList .b-content .listEmptyMessage,
-		.messageList .b-content .listError,
-		.messageList .b-content .listLoading,
-		.messageView .b-message-view-desc {
-			color: @overlay0;
-		}
-
-		#messageItem .loading {
-			color: @overlay2;
+		--link-color: @blue;
+		#messageItem .b-text-part a:visited {
+			color: @mauve;
 		}
 
 		/* Inputs */
@@ -193,34 +183,143 @@
 			}
 		}
 
-		/* Message body */
-		--link-color: @blue;
-		#messageItem .b-text-part a:visited {
-			color: @mauve;
+		#V-PopupsCompose header .close,
+		#V-PopupsCompose header .minimize-custom {
+			color: @surface2;
+			border-color: @surface0;
 		}
 
-		.mail-body {
-			&,
-			& > table,
-			& > table td[style*="background-color: rgb(255, 255, 255);"] {
-				background-color: @base !important;
-				color: @text !important;
+		/* No message selected */
+		.messageView .b-message-view-desc {
+			color: @subtext1;
+		}
+
+		/* Loading messages */
+		.messageList .b-content {
+			.listDragOver,
+			.listEmptyMessage,
+			.listError,
+			.listLoading {
+				color: @overlay0;
+			}
+
+			.listError {
+				color: @red;
 			}
 		}
-
-		/* Draggable items */
-
-		.drag-handle {
-			color: @surface0;
+		#messageItem .loading {
+			color: @overlay0;
 		}
 
-		tr:hover .drag-handle {
-			color: @surface2;
+		.icon-spinner {
+			border-color: @surface1;
+			border-top-color: @text;
+		}
+		.icon-spinner:not(.not-animated),
+		.list-loading .icon-spinner.not-animated {
+			border-top-color: @overlay1;
+		}
+		.iconcolor-green {
+			color: @green;
+		}
+		.iconcolor-red {
+			color: @red;
+		}
+		.b-folders .is-flagged .flag-icon::after {
+			color: @orange;
 		}
 
-		/* Message details */
-		.messageView .messageItemHeader .informationFull td:first-child {
-			border-right-color: @overlay0;
+		/* Tags */
+
+		.msgflag-\$important .checkboxMessage {
+			background-color: @red;
+			color: #fff;
+		}
+
+		.msgflag-\$important.focused {
+			background-color: rgba(255, 0, 0, 0.3);
+		}
+
+		.msgflag-\$important:not(.focused) {
+			color: @red;
+		}
+
+		.msgflag-\$todo .checkboxMessage {
+			background-color: @blue;
+			color: #fff;
+		}
+
+		.msgflag-\$todo.focused {
+			background-color: rgba(64, 64, 255, 0.3);
+		}
+
+		.msgflag-\$todo:not(.focused) {
+			color: @blue;
+		}
+
+		.msgflag-\$label5 .checkboxMessage {
+			background-color: #808;
+			color: #fff;
+		}
+
+		.msgflag-\$label4 .checkboxMessage {
+			background-color: @blue;
+			color: #fff;
+		}
+
+		.msgflag-\$label3 .checkboxMessage {
+			background-color: @green;
+			color: #fff;
+		}
+
+		.msgflag-\$label2 .checkboxMessage {
+			background-color: @orange;
+			color: #fff;
+		}
+
+		.msgflag-\$label1 .checkboxMessage {
+			background-color: @red;
+			color: #fff;
+		}
+
+		.msgflag-\$label5.focused {
+			background-color: rgba(255, 0, 255, 0.3);
+		}
+
+		.msgflag-\$label4.focused {
+			background-color: rgba(64, 64, 255, 0.3);
+		}
+
+		.msgflag-\$label3.focused {
+			background-color: rgba(0, 255, 0, 0.3);
+		}
+
+		.msgflag-\$label2.focused {
+			background-color: rgba(255, 170, 0, 0.3);
+		}
+
+		.msgflag-\$label1.focused {
+			background-color: rgba(255, 0, 0, 0.3);
+		}
+
+		.msgflag-\$label5:not(.focused) {
+			color: #939;
+		}
+
+		.msgflag-\$label4:not(.focused) {
+			color: @blue;
+		}
+
+		.msgflag-\$label3:not(.focused) {
+			color: @green;
+		}
+
+		.msgflag-\$label2:not(.focused) {
+			color: @orange;
+		}
+
+		.msgflag-\$label1:not(.focused) {
+			color: @red;
 		}
 	}
 
