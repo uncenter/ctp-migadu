@@ -292,11 +292,10 @@
 
 		.msgflag-\$important .checkboxMessage {
 			background-color: @red;
-			color: #fff;
 		}
 
 		.msgflag-\$important.focused {
-			background-color: rgba(255, 0, 0, 0.3);
+			background-color: fade(@red, 30%);
 		}
 
 		.msgflag-\$important:not(.focused) {
@@ -305,11 +304,11 @@
 
 		.msgflag-\$todo .checkboxMessage {
 			background-color: @blue;
-			color: #fff;
+			color: @text;
 		}
 
 		.msgflag-\$todo.focused {
-			background-color: rgba(64, 64, 255, 0.3);
+			background-color: fade(@blue, 30%);
 		}
 
 		.msgflag-\$todo:not(.focused) {
@@ -318,47 +317,47 @@
 
 		.msgflag-\$label5 .checkboxMessage {
 			background-color: darken(@pink, 10%);
-			color: #fff;
+			color: @text;
 		}
 
 		.msgflag-\$label4 .checkboxMessage {
 			background-color: @blue;
-			color: #fff;
+			color: @text;
 		}
 
 		.msgflag-\$label3 .checkboxMessage {
 			background-color: @green;
-			color: #fff;
+			color: @text;
 		}
 
 		.msgflag-\$label2 .checkboxMessage {
 			background-color: @orange;
-			color: #fff;
+			color: @text;
 		}
 
 		.msgflag-\$label1 .checkboxMessage {
 			background-color: @red;
-			color: #fff;
+			color: @text;
 		}
 
 		.msgflag-\$label5.focused {
-			background-color: rgba(255, 0, 255, 0.3);
+			background-color: fade(@pink, 30%);
 		}
 
 		.msgflag-\$label4.focused {
-			background-color: rgba(64, 64, 255, 0.3);
+			background-color: fade(@blue, 30%);
 		}
 
 		.msgflag-\$label3.focused {
-			background-color: rgba(0, 255, 0, 0.3);
+			background-color: fade(@green, 30%);
 		}
 
 		.msgflag-\$label2.focused {
-			background-color: rgba(255, 170, 0, 0.3);
+			background-color: fade(mix(@red, @yellow), 30%);
 		}
 
 		.msgflag-\$label1.focused {
-			background-color: rgba(255, 0, 0, 0.3);
+			background-color: fade(@red, 30%);
 		}
 
 		.msgflag-\$label5:not(.focused) {
