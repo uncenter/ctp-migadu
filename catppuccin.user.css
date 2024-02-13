@@ -92,11 +92,14 @@
 		--tr-hover-bg-clr: @crust;
 
 		--loading-color: @text;
-		--login-color: @surface0;
-		--login-bg-color: @overlay2;
+		--login-color: @text;
+		--login-bg-color: @crust;
 		.LoginView .btn,
 		.LoginView input {
 			border-color: @surface0;
+		}
+		.LoginView input:focus, .LoginView input:hover {
+			border-color: @surface1;
 		}
 		.LoginView input::placeholder {
 			color: var(--login-color);
